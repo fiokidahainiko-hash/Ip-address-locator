@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Locator - Check Your IP & Location</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Cloud Background -->
+    <div class="cloud-bg">
+        <svg class="clouds" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <style>
+                    @keyframes float1 {
+                        0%, 100% { transform: translateX(0px); }
+                        50% { transform: translateX(30px); }
+                    }
+                    @keyframes float2 {
+                        0%, 100% { transform: translateX(0px); }
+                        50% { transform: translateX(-30px); }
+                    }
+                    @keyframes float3 {
+                        0%, 100% { transform: translateX(0px); }
+                        50% { transform: translateX(20px); }
+                    }
+                    .cloud-shape { animation: float1 6s ease-in-out infinite; }
+                    .cloud-shape:nth-child(2) { animation: float2 8s ease-in-out infinite; animation-delay: 1s; }
+                    .cloud-shape:nth-child(3) { animation: float3 7s ease-in-out infinite; animation-delay: 2s; }
+                </style>
+            </defs>
+            <g class="cloud-shape"><path d="M 100 150 Q 80 130 60 140 Q 40 140 35 160 Q 20 170 30 190 Q 50 200 100 195 Q 120 190 130 170 Q 115 150 100 150" fill="white" opacity="0.3"/></g>
+            <g class="cloud-shape"><path d="M 900 100 Q 880 80 860 90 Q 840 90 835 110 Q 820 120 830 140 Q 850 150 900 145 Q 920 140 930 120 Q 915 100 900 100" fill="white" opacity="0.25"/></g>
+            <g class="cloud-shape"><path d="M 500 200 Q 480 180 460 190 Q 440 190 435 210 Q 420 220 430 240 Q 450 250 500 245 Q 520 240 530 220 Q 515 200 500 200" fill="white" opacity="0.35"/></g>
+        </svg>
+    </div>
+
+    <!-- Navigation & Language Selector -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-cloud">☁</span>
+                <span class="logo-text" id="logo-text">IP Locator</span>
+            </div>
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 id="header-title">Check Your IP Address</h1>
+            <p id="header-subtitle">Discover your location and network information instantly</p>
+        </header>
+
+        <!-- Main Card -->
+        <div class="card">
+            <!-- IP Display Section -->
+            <div class="ip-section">
+                <div class="ip-label" id="ip-label">Your IP Address</div>
+                <div class="ip-display" id="ip-display">Loading...</div>
+                <button class="copy-btn" id="copy-btn" title="Copy IP">
+                    <span id="copy-text">Copy</span>
+                </button>
+            </div>
+
+            <!-- Information Grid -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <div class="info-label" id="info-country">Country</div>
+                    <div class="info-value" id="country-value">-</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🏙️</div>
+                    <div class="info-label" id="info-city">City</div>
+                    <div class="info-value" id="city-value">-</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🗺️</div>
+                    <div class="info-label" id="info-region">Region</div>
+                    <div class="info-value" id="region-value">-</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🔗</div>
+                    <div class="info-label" id="info-isp">ISP</div>
+                    <div class="info-value" id="isp-value">-</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🌐</div>
+                    <div class="info-label" id="info-timezone">Timezone</div>
+                    <div class="info-value" id="timezone-value">-</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">⚡</div>
+                    <div class="info-label" id="info-latency">Latitude/Longitude</div>
+                    <div class="info-value" id="coords-value">-</div>
+                </div>
+            </div>
+
+            <!-- Coordinates Display -->
+            <div class="coords-display">
+                <div class="coord-item">
+                    <span class="coord-label" id="lat-label">Latitude</span>
+                    <span class="coord-value" id="latitude">-</span>
+                </div>
+                <div class="coord-item">
+                    <span class="coord-label" id="lon-label">Longitude</span>
+                    <span class="coord-value" id="longitude">-</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button class="btn btn-primary" id="refresh-btn">
+                    <span id="refresh-text">Refresh</span>
+                </button>
+                <button class="btn btn-secondary" id="share-btn">
+                    <span id="share-text">Share</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Information Section -->
+        <section class="info-section">
+            <h2 id="info-heading">What is Your IP Address?</h2>
+            <p id="info-text">An IP address is a unique identifier assigned to every device connected to the internet. It allows devices to communicate with each other and helps identify your location and internet service provider (ISP).</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p id="footer-text">&copy; 2026 IP Address Locator. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
